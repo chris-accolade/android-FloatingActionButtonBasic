@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!--
  Copyright 2014, The Android Open Source Project
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,4 +18,6 @@
     <color name="fab_color_1_muted">#ff8080</color>
     <color name="fab_color_2">#9c27b0</color>
     <color name="fab_color_2_muted">#a56ab0</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

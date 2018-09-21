@@ -16,10 +16,7 @@
 
 package com.example.android.floatingactionbuttonbasic;
 
-import com.example.android.common.logger.Log;
-
-import android.app.Activity;
-import android.net.Uri;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -31,37 +28,42 @@ import android.view.ViewGroup;
  * This fragment inflates a layout with two Floating Action Buttons and acts as a listener to
  * changes on them.
  */
-public class FloatingActionButtonBasicFragment extends Fragment implements FloatingActionButton.OnCheckedChangeListener{
+public class ButtonsFragment extends Fragment implements FloatingActionButton.OnCheckedChangeListener{
 
-    private final static String TAG = "FloatingActionButtonBasicFragment";
+    public interface FABListener {
+        public void onButtonClicked(int fabId, boolean isChecked);
+    }
+
+    private FABListener listener;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fab_layout, container, false);
 
         // Make this {@link Fragment} listen for changes in both FABs.
-        FloatingActionButton fab1 = (FloatingActionButton) rootView.findViewById(R.id.fab_1);
+        FloatingActionButton fab1 = rootView.findViewById(R.id.fab_large);
         fab1.setOnCheckedChangeListener(this);
-        FloatingActionButton fab2 = (FloatingActionButton) rootView.findViewById(R.id.fab_2);
+        FloatingActionButton fab2 = rootView.findViewById(R.id.fab_small);
         fab2.setOnCheckedChangeListener(this);
         return rootView;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if(context instanceof FABListener) {
+            listener = (FABListener) context;
+        } else {
+            throw new RuntimeException("Context must implement FABListener interface.");
+        }
+    }
 
     @Override
     public void onCheckedChanged(FloatingActionButton fabView, boolean isChecked) {
-        // When a FAB is toggled, log the action.
-        switch (fabView.getId()){
-            case R.id.fab_1:
-                Log.d(TAG, String.format("FAB 1 was %s.", isChecked ? "checked" : "unchecked"));
-                break;
-            case R.id.fab_2:
-                Log.d(TAG, String.format("FAB 2 was %s.", isChecked ? "checked" : "unchecked"));
-                break;
-            default:
-                break;
-        }
+
+        listener.onButtonClicked(fabView.getId(), isChecked);
     }
 }

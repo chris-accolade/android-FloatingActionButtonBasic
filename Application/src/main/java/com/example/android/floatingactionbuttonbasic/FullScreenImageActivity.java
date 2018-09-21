@@ -4,15 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-
-import com.example.android.floatingactionbuttonbasic.util.DatabaseHelper;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -154,10 +151,5 @@ public class FullScreenImageActivity extends Activity {
     private void loadImage(Intent intent, ImageView imageView) {
 
         // TODO - update the ImageView with the Bitmap from the MainActivity.
-        if (intent.hasExtra("FILENAME")) {
-            String filename = intent.getStringExtra("FILENAME");
-            Bitmap bitmap = DatabaseHelper.getImage(this, filename);
-            imageView.setImageBitmap(bitmap);
-        }
     }
 }

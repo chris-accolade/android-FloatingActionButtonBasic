@@ -13,8 +13,11 @@ import android.widget.ImageView;
 
 public class ImageFragment extends Fragment {
 
+    /**
+     * Callback interface invoked when the ImageView is clicked.  This should be implemented
+     * by any classes that wish to receive notification that the ImageView was clicked.
+     */
     public interface OnImageClickedListener {
-        // TODO: Update argument type and name
         void onImageClicked(Bitmap image);
     }
 
@@ -50,8 +53,6 @@ public class ImageFragment extends Fragment {
 
         if(context instanceof OnImageClickedListener) {
             mListener = (OnImageClickedListener) context;
-        } else {
-            throw new RuntimeException("Context must implement OnImageClickedListener.");
         }
     }
 

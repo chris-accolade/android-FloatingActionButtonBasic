@@ -23,6 +23,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.android.floatingactionbuttonbasic.ui.FloatingActionButton;
+
 
 /**
  * This fragment inflates a layout with two Floating Action Buttons and acts as a listener to

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.floatingactionbuttonbasic;
+package com.example.android.floatingactionbuttonbasic.ui;
 
 import android.content.Context;
 import android.graphics.Outline;

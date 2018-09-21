@@ -3,7 +3,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent" >
 
-    <com.example.android.floatingactionbuttonbasic.FloatingActionButton
+    <com.example.android.floatingactionbuttonbasic.ui.FloatingActionButton
             android:id="@+id/fab_small"
             android:layout_width="@dimen/fab_size_small"
             android:layout_height="@dimen/fab_size_small"
@@ -20,9 +20,9 @@
                 android:layout_gravity="center"
                 android:duplicateParentState="true"/>
 
-    </com.example.android.floatingactionbuttonbasic.FloatingActionButton>
+    </com.example.android.floatingactionbuttonbasic.ui.FloatingActionButton>
 
-    <com.example.android.floatingactionbuttonbasic.FloatingActionButton
+    <com.example.android.floatingactionbuttonbasic.ui.FloatingActionButton
             android:id="@+id/fab_large"
             android:layout_width="@dimen/fab_size"
             android:layout_height="@dimen/fab_size"
@@ -39,6 +39,6 @@
                 android:layout_gravity="center"
                 android:duplicateParentState="true"/>
 
-    </com.example.android.floatingactionbuttonbasic.FloatingActionButton>
+    </com.example.android.floatingactionbuttonbasic.ui.FloatingActionButton>
 
 </FrameLayout>

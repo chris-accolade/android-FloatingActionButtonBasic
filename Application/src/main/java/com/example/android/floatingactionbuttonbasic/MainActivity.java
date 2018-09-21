@@ -17,15 +17,9 @@
 
 package com.example.android.floatingactionbuttonbasic;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-
-import com.example.android.floatingactionbuttonbasic.util.DatabaseHelper;
-import com.example.android.floatingactionbuttonbasic.util.DownloadAsyncTask;
 
 /**
  * A simple launcher activity containing a summary sample description, sample log and a custom
@@ -34,7 +28,7 @@ import com.example.android.floatingactionbuttonbasic.util.DownloadAsyncTask;
  * For devices with displays with a width of 720dp or greater, the sample log is always visible,
  * on other devices it's visibility is controlled by an item on the Action Bar.
  */
-public class MainActivity extends FragmentActivity implements ButtonsFragment.FABListener, ImageFragment.OnImageClickedListener {
+public class MainActivity extends FragmentActivity implements ButtonsFragment.FABListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +47,12 @@ public class MainActivity extends FragmentActivity implements ButtonsFragment.FA
     public void onButtonClicked(int fabId, boolean isChecked) {
 
         switch (fabId) {
-            case R.id.fab_large:
-                handleLargeImage(isChecked);
-                break;
             case R.id.fab_small:
                 handleSmallImage(isChecked);
+                break;
+            case R.id.fab_large:
+                onButtonClicked(fabId, isChecked);
+                handleLargeImage(isChecked);
                 break;
             default:
                 break;
@@ -66,38 +61,16 @@ public class MainActivity extends FragmentActivity implements ButtonsFragment.FA
 
     private void handleSmallImage(boolean isChecked) {
 
-        // TODO - load ImageFragment with local image drawable resource "accolade_logo"
-        ImageFragment imageFragment = (ImageFragment) getFragmentManager().findFragmentById(R.id.image_fragment);
-        if (!isChecked) {
-            imageFragment.updateImage(null);
-        } else {
-            Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.accolade_logo);
-            imageFragment.updateImage(image);
-        }
+        // TODO - if isChecked != true, hide the image.
+        // TODO - if isChecked == true, find the ImageFragment with ID R.id.image_fragment,
+        //          and update it with local image drawable resource named "accolade_logo"
     }
 
     private void handleLargeImage(boolean isChecked) {
 
-        // TODO - use AsyncTask to download image with url: R.string.image_url and update the ImageFragment
-        ImageFragment imageFragment = (ImageFragment) getFragmentManager().findFragmentById(R.id.image_fragment);
-        if(!isChecked) {
-             imageFragment.updateImage(null);;
-        } else {
-
-            DownloadAsyncTask downloadTask = new DownloadAsyncTask(imageFragment);
-            downloadTask.execute(getResources().getString(R.string.image_url));
-        }
-
+        // TODO - if isChecked != true, hide the image.
+        // TODO - if isChecked == true, use AsyncTask to download the image with url from R.string.image_url
+        //          and update the ImageFragment with ID R.id.image_fragment.
     }
 
-    @Override
-    public void onImageClicked(Bitmap image) {
-
-        // TODO - when image is clicked, launch FullScreenImageActivity to show the Bitmap image
-        String filename = DatabaseHelper.saveImage(this, image);
-
-        Intent intent = new Intent(this, FullScreenImageActivity.class);
-        intent.putExtra("FILENAME", filename);
-        startActivity(intent);
-    }
 }
